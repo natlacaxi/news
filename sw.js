@@ -1,14 +1,14 @@
-const VERSION = "talco-news-v3";
+const VERSION = "talco-news-v4";
 const SHELL = [
   "./",
   "index.html",
   "manifest.webmanifest",
-  "icons/favicon.svg",
-  "icons/favicon-32.png",
-  "icons/icon-192.png",
-  "icons/icon-512.png",
-  "icons/maskable-512.png",
-  "icons/apple-touch-icon.png"
+  "favicon.svg",
+  "favicon-32.png",
+  "icon-192.png",
+  "icon-512.png",
+  "maskable-512.png",
+  "apple-touch-icon.png"
 ];
 // Données externes : réseau d'abord, cache en secours (lecture hors ligne)
 const NETWORK_FIRST_HOSTS = [
@@ -18,7 +18,7 @@ const NETWORK_FIRST_HOSTS = [
 ];
 
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(VERSION).then(c => Promise.all(SHELL.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", e => {
