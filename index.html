@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Talco News</title>
+<title>Talco News — le monde en direct</title>
 <meta name="description" content="Plus de 200 sources, traduction instantanée, marchés, météo, séismes et tendances : l'actualité mondiale en direct.">
 <meta name="theme-color" content="#0b0e14">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmY4YTNkIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Q2Mjg1YSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9InVybCgjZykiLz4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4KICAgIDxjaXJjbGUgY3g9IjMyIiBjeT0iMzIiIHI9IjE3Ii8+CiAgICA8cGF0aCBkPSJNMTUgMzJoMzRNMTguNSAyMmgyN00xOC41IDQyaDI3Ii8+CiAgICA8ZWxsaXBzZSBjeD0iMzIiIGN5PSIzMiIgcng9IjgiIHJ5PSIxNyI+CiAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InJ4IiB2YWx1ZXM9IjE3OzI7MTc7MjsxNyIga2V5VGltZXM9IjA7LjI1Oy41Oy43NTsxIiBkdXI9IjZzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgPC9lbGxpcHNlPgogIDwvZz4KICA8Y2lyY2xlIGN4PSI0NyIgY3k9IjE3IiByPSI0LjUiIGZpbGw9IiNmZmYiPgogICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgdmFsdWVzPSI0LjU7Njs0LjUiIGR1cj0iMnMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+CiAgPC9jaXJjbGU+Cjwvc3ZnPgo=">
+<link rel="manifest" href="manifest.json?v=7">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmY4YTNkIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZDYyODVhIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIuMjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIxNy4yOCIvPgogICAgPHBhdGggZD0iTTE0LjcyIDMySDQ5LjI4TTE3LjA0IDIzLjM2SDQ2Ljk2TTE3LjA0IDQwLjY0SDQ2Ljk2Ii8+CiAgICA8ZWxsaXBzZSBjeD0iMzIiIGN5PSIzMiIgcng9IjcuNzgiIHJ5PSIxNy4yOCIvPgogICAgPHBhdGggZD0iTTMyIDE0LjcyVjQ5LjI4Ii8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjQ1LjQ4IiBjeT0iMTguNTIiIHI9IjMuNDYiIGZpbGw9IiNmZmYiLz4KPC9zdmc+Cg==">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" id="fav">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -169,6 +169,22 @@ body[data-tab=info] #feed{display:none}
 .btn{border:0;border-radius:12px;padding:0 16px;height:42px;font-weight:700;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--a1),var(--a2));text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:transform .15s}
 .btn:hover{transform:translateY(-1px)}
 .btn.sec{background:var(--bg);color:var(--text);border:1px solid var(--border)}
+.rd{padding:6px 20px 40px;display:flex;flex-direction:column;gap:14px}
+.rd .tools{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.rd h1{margin:4px 0 0;font-size:1.65rem;line-height:1.2;letter-spacing:-.6px}
+.rd .by{color:var(--muted);font-size:13.5px}
+.rd .bd{font-size:var(--rs,17px);line-height:1.75;color:var(--text);overflow-wrap:anywhere}
+.rd .bd p{margin:0 0 1em;font-size:inherit;line-height:inherit;color:inherit}
+.rd .bd h2,.rd .bd h3,.rd .bd h4{line-height:1.25;margin:1.4em 0 .5em;letter-spacing:-.3px}
+.rd .bd img,.rd .bd video{max-width:100%;height:auto;border-radius:12px;display:block;margin:1em auto}
+.rd .bd figure{margin:1em 0}.rd .bd figcaption{font-size:.8em;color:var(--muted);text-align:center}
+.rd .bd a{color:var(--a1);text-decoration:underline;text-underline-offset:3px}
+.rd .bd blockquote{margin:1em 0;padding:.2em 1em;border-left:4px solid var(--a1);color:var(--muted)}
+.rd .bd ul,.rd .bd ol{padding-left:1.3em}.rd .bd pre{overflow:auto;background:var(--bg);padding:12px;border-radius:10px}
+.rd .bd table{display:block;overflow:auto;max-width:100%}
+.rd .note{background:color-mix(in srgb,var(--a1) 12%,transparent);border:1px solid color-mix(in srgb,var(--a1) 40%,var(--border));border-radius:12px;padding:10px 12px;font-size:14px}
+.rd .ld{display:flex;flex-direction:column;gap:10px}.rd .ld i{display:block;height:14px;border-radius:7px;background:linear-gradient(100deg,var(--border) 30%,var(--bg) 50%,var(--border) 70%);background-size:300% 100%;animation:sk 1.3s infinite}
+.ctl.sm{height:34px;min-width:34px;font-size:13px;padding:0 10px}
 #toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:all .3s;z-index:200}
 #toast.show{opacity:1;transform:translate(-50%,0)}
 .ticker{overflow:hidden;white-space:nowrap;font-size:13px;color:var(--muted);border-top:1px solid var(--border)}
@@ -235,13 +251,14 @@ body[data-view=list] .card.noim .meta{padding-right:40px}
       <a class="logo" href="./" aria-label="Talco News">
         <svg viewBox="0 0 64 64" aria-hidden="true">
           <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset="1" stop-color="#d6285a"/></linearGradient></defs>
-          <rect width="64" height="64" rx="16" fill="url(#lg)"/>
-          <g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round">
-            <circle cx="32" cy="32" r="17"/>
-            <path d="M15 32h34M18.5 22h27M18.5 42h27"/>
-            <ellipse cx="32" cy="32" rx="8" ry="17"><animate attributeName="rx" values="17;2;17;2;17" keyTimes="0;.25;.5;.75;1" dur="6s" repeatCount="indefinite"/></ellipse>
+          <rect width="64" height="64" rx="15" fill="url(#lg)"/>
+          <g fill="none" stroke="#fff" stroke-width="2.24" stroke-linecap="round">
+            <circle cx="32" cy="32" r="17.28"/>
+    <path d="M14.72 32H49.28M17.04 23.36H46.96M17.04 40.64H46.96"/>
+    <ellipse cx="32" cy="32" rx="7.78" ry="17.28"/>
+    <path d="M32 14.72V49.28"/>
           </g>
-          <circle cx="47" cy="17" r="4.5" fill="#fff"><animate attributeName="r" values="4.5;6;4.5" dur="2s" repeatCount="indefinite"/></circle>
+          <circle cx="45.48" cy="18.52" r="3.46" fill="#fff"/>
         </svg>
         <b>Talco<span class="grad">News</span></b>
       </a>
@@ -777,7 +794,7 @@ function openDrawer(link) {
   dIdx = i; dOrig = false; drawDrawer();
   $("#drawer").classList.add("open"); $("#drawer").setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden";
 }
-function closeDrawer() { $("#drawer").classList.remove("open"); $("#drawer").setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; dIdx = -1; }
+function closeDrawer() { rdTok++; $("#drawer").classList.remove("open"); $("#drawer").setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; dIdx = -1; }
 function drawDrawer() {
   const a = visible[dIdx]; if (!a) return closeDrawer();
   const v = dOrig ? { title: a.title, desc: a.desc, tr: false } : view(a), isFav = favs.some(f => f.link === a.link);
@@ -785,7 +802,7 @@ function drawDrawer() {
     ${a.img ? `<img class="big" src="${esc(safeUrl(a.img))}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}
     <div class="ct"><div class="meta"><span class="src">${esc(a.source)}</span><span>${ago(a.date)}${a.date ? " · " + new Date(a.date).toLocaleString("fr-FR", { dateStyle: "medium", timeStyle: "short" }) : ""}</span>${v.tr ? `<span class="tr">🌐 traduit</span>` : ""}</div>
     <h2>${esc(v.title)}</h2>${v.desc ? `<p>${esc(v.desc)}</p>` : `<p>Aperçu indisponible pour cette source. Ouvre l'article pour lire la suite.</p>`}
-    <div class="acts"><a class="btn" href="${esc(safeUrl(a.link))}" target="_blank" rel="noopener noreferrer">Lire l'article ↗</a>
+    <div class="acts">${canRead(a) ? `<button class="btn" data-d="read">📖 Lire ici</button>` : ""}<a class="btn${canRead(a) ? " sec" : ""}" href="${esc(safeUrl(a.link))}" target="_blank" rel="noopener noreferrer">Lire sur le site ↗</a>
     <button class="btn sec" data-d="share">Partager</button><button class="btn sec" data-d="fav">${isFav ? "★ Favori" : "☆ Favori"}</button>
     ${lang !== "off" && a.lang !== lang ? `<button class="btn sec" data-d="orig">${dOrig ? "Voir la traduction" : "Voir l'original"}</button>` : ""}</div></div>`;
 }
@@ -795,6 +812,7 @@ $("#dsh").addEventListener("click", async e => {
   else if (d === "prev") { dIdx = Math.max(0, dIdx - 1); dOrig = false; drawDrawer(); }
   else if (d === "next") { dIdx = Math.min(visible.length - 1, dIdx + 1); dOrig = false; drawDrawer(); }
   else if (d === "orig") { dOrig = !dOrig; drawDrawer(); }
+  else if (d === "read") openReader(a);
   else if (d === "fav") { toggleFav(a.link); drawDrawer(); }
   else if (d === "share") {
     const v = view(a);
@@ -802,6 +820,113 @@ $("#dsh").addEventListener("click", async e => {
   }
 });
 $("#dov").addEventListener("click", closeDrawer);
+/* ============ LECTEUR INTÉGRAL ============ */
+const canRead = a => a && /^https?:/i.test(a.link) && host(a.link) !== "news.google.com";
+let rdTok = 0, rdState = null, rdSize = lsGet("tn:rs", 17);
+function loadReadability() {
+  if (window.Readability) return Promise.resolve();
+  return new Promise((res, rej) => { const s = document.createElement("script"); s.src = "readability.js"; s.onload = res; s.onerror = () => rej(new Error("lib")); document.head.appendChild(s); });
+}
+async function fetchHTML(url) {
+  return Promise.any(PROXIES.map(p => withTO(fetch(p(url)).then(r => { if (!r.ok) throw 0; return r.text(); }).then(t => { if (t.length < 800 || !/<html|<body|<article|<p[ >]/i.test(t)) throw 0; return t; }), 16000)));
+}
+function sanitize(html, base) {
+  const body = new DOMParser().parseFromString(html, "text/html").body;
+  body.querySelectorAll("script,style,iframe,object,embed,form,input,button,select,textarea,link,meta,svg,canvas,noscript,audio").forEach(e => e.remove());
+  body.querySelectorAll("*").forEach(e => {
+    [...e.attributes].forEach(at => { const n = at.name.toLowerCase(); if (n.startsWith("on") || n === "style" || n === "srcdoc" || n === "class" || n === "id") e.removeAttribute(at.name); });
+    if (e.tagName === "A") {
+      const hr = e.getAttribute("href") || "";
+      if (/^\s*(javascript|data):/i.test(hr)) e.removeAttribute("href"); else { e.target = "_blank"; e.rel = "noopener noreferrer"; }
+    }
+    if (e.tagName === "IMG") {
+      const ds = e.getAttribute("data-src") || e.getAttribute("data-lazy-src");
+      if (ds && !/^data:/i.test(ds)) e.setAttribute("src", ds);
+      const src = e.getAttribute("src") || "";
+      if (!src || /^data:/i.test(src)) { e.remove(); return; }
+      try { e.src = https(new URL(src, base).href); } catch (x) {}
+      e.removeAttribute("srcset"); e.loading = "lazy"; e.referrerPolicy = "no-referrer"; e.setAttribute("onerror", "this.remove()");
+    }
+  });
+  return body;
+}
+async function openReader(a) {
+  const tok = ++rdTok, sh = $("#dsh");
+  const head = `<div class="hd"><button class="ctl" data-r="back" aria-label="Retour">←</button><div class="sp"></div><button class="ctl sm" data-r="smaller" aria-label="Texte plus petit">A−</button><button class="ctl sm" data-r="bigger" aria-label="Texte plus grand">A+</button><a class="ctl sm" href="${esc(safeUrl(a.link))}" target="_blank" rel="noopener noreferrer" title="Ouvrir l'original">↗</a><button class="ctl" data-d="close" aria-label="Fermer">✕</button></div>`;
+  const v = view(a);
+  sh.innerHTML = head + `<div class="rd"><div class="by"><b class="src">${esc(a.source)}</b> · chargement de l'article…</div><h1>${esc(v.title)}</h1><div class="ld"><i style="width:100%"></i><i style="width:96%"></i><i style="width:90%"></i><i style="width:100%"></i><i style="width:70%"></i></div></div>`;
+  sh.scrollTop = 0;
+  try {
+    const [, html] = await Promise.all([loadReadability(), fetchHTML(a.link)]);
+    if (tok !== rdTok) return;
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const bs = doc.createElement("base"); bs.href = a.link; doc.head.prepend(bs);
+    const art = new Readability(doc, { keepClasses: false }).parse();
+    if (!art || !art.content) throw new Error("vide");
+    const body = sanitize(art.content, a.link);
+    const f0 = body.firstElementChild; if (f0 && /^H[12]$/.test(f0.tagName)) f0.remove();
+    const len = (art.textContent || "").trim().length;
+    rdState = { a, orig: null, translated: false };
+    const needTr = lang !== "off" && a.lang !== lang;
+    sh.innerHTML = head + `<div class="rd">
+      <div class="by"><b class="src">${esc(a.source)}</b>${art.byline ? " · " + esc(art.byline) : ""}${a.date ? " · " + esc(new Date(a.date).toLocaleDateString("fr-FR", { dateStyle: "long" })) : ""}</div>
+      <h1 id="rdT">${esc(v.title)}</h1>
+      ${a.img && !body.querySelector("img") ? `<img src="${esc(safeUrl(a.img))}" alt="" referrerpolicy="no-referrer" style="width:100%;border-radius:14px" onerror="this.remove()">` : ""}
+      ${len < 700 ? `<div class="note">Texte partiel : ce site limite l'accès à l'article (abonnement ou protection). Ouvre-le sur le site pour lire la suite.</div>` : ""}
+      <div class="bd" id="rdB" style="--rs:${rdSize}px"></div>
+      <div class="tools">${needTr ? `<button class="ctl sm" data-r="tr" id="rdTr">🌐 Voir l'original</button>` : ""}<a class="btn sec" href="${esc(safeUrl(a.link))}" target="_blank" rel="noopener noreferrer">Ouvrir sur le site ↗</a></div></div>`;
+    $("#rdB").innerHTML = body.innerHTML;
+    sh.scrollTop = 0;
+    if (needTr) translateReader(tok);
+  } catch (e) {
+    if (tok !== rdTok) return;
+    sh.innerHTML = head + `<div class="rd"><div class="by"><b class="src">${esc(a.source)}</b></div><h1>${esc(v.title)}</h1><div class="note">Impossible d'afficher l'article ici : le site bloque la lecture externe ou ne répond pas.</div><div class="tools"><a class="btn" href="${esc(safeUrl(a.link))}" target="_blank" rel="noopener noreferrer">Ouvrir sur le site ↗</a><button class="btn sec" data-r="back">Retour</button></div></div>`;
+  }
+}
+async function translateReader(tok) {
+  const box = $("#rdB"); if (!box) return;
+  const els = [...box.querySelectorAll("p,h2,h3,h4,li,blockquote,figcaption")].filter(e => !e.querySelector("p,li,blockquote,h2,h3,h4") && e.textContent.trim().length > 1);
+  rdState.orig = els.map(e => e.innerHTML); rdState.els = els; rdState.tr = null;
+  const btn = $("#rdTr"); if (btn) btn.textContent = "🌐 Traduction…";
+  const texts = els.map(e => e.textContent.trim()), out = new Array(els.length);
+  const chunks = []; let cur = [], len = 0;
+  texts.forEach((t, i) => { const l = encodeURIComponent(t).length + 3; if (cur.length && (len + l > 1500 || cur.length >= 12)) { chunks.push(cur); cur = []; len = 0; } cur.push(i); len += l; });
+  if (cur.length) chunks.push(cur);
+  let k = 0;
+  const worker = async () => {
+    while (k < chunks.length) {
+      const ch = chunks[k++]; if (tok !== rdTok) return;
+      try {
+        const r = (await gtx(ch.map(i => texts[i].replace(/\n+/g, " ")).join("\n"), lang)).split("\n");
+        if (r.length === ch.length) ch.forEach((i, n) => out[i] = r[n]);
+        else for (const i of ch) { try { out[i] = await gtx(texts[i], lang); } catch (e) {} }
+      } catch (e) {}
+    }
+  };
+  await Promise.all([worker(), worker(), worker()]);
+  if (tok !== rdTok) return;
+  rdState.tr = out.map((t, i) => t ? esc(t) : rdState.orig[i]);
+  const ok = out.filter(Boolean).length > els.length / 2;
+  if (!ok) { if (btn) btn.textContent = "🌐 Traduction indisponible"; return; }
+  els.forEach((e, i) => e.innerHTML = rdState.tr[i]); rdState.translated = true;
+  const t = view(rdState.a); const h1 = $("#rdT"); if (h1) h1.textContent = t.title;
+  if (btn) btn.textContent = "🌐 Voir l'original";
+}
+$("#dsh").addEventListener("click", e => {
+  const b = e.target.closest("[data-r]"); if (!b) return; const r = b.dataset.r;
+  if (r === "back") { rdTok++; drawDrawer(); }
+  else if (r === "bigger" || r === "smaller") {
+    rdSize = Math.max(14, Math.min(26, rdSize + (r === "bigger" ? 1 : -1))); lsSet("tn:rs", rdSize);
+    const bd = $("#rdB"); if (bd) bd.style.setProperty("--rs", rdSize + "px");
+  } else if (r === "tr" && rdState && rdState.orig) {
+    const showOrig = rdState.translated;
+    rdState.els.forEach((el, i) => el.innerHTML = showOrig ? rdState.orig[i] : (rdState.tr ? rdState.tr[i] : rdState.orig[i]));
+    rdState.translated = !showOrig;
+    const h1 = $("#rdT"); if (h1) h1.textContent = showOrig ? rdState.a.title : view(rdState.a).title;
+    b.textContent = showOrig ? "🌐 Voir la traduction" : "🌐 Voir l'original";
+  }
+});
+
 
 /* ============ FAVORIS ============ */
 function toggleFav(link) {
@@ -888,12 +1013,12 @@ let favTimer = null, ang = 0;
 function drawFav(a) {
   const c = cv.getContext("2d"); c.clearRect(0, 0, 64, 64);
   const g = c.createLinearGradient(0, 0, 64, 64); g.addColorStop(0, "#ff8a3d"); g.addColorStop(1, "#d6285a");
-  c.fillStyle = g; c.beginPath(); c.roundRect(0, 0, 64, 64, 16); c.fill();
-  c.strokeStyle = "#fff"; c.lineWidth = 3; c.lineCap = "round";
-  c.beginPath(); c.arc(32, 32, 17, 0, 7); c.stroke();
-  c.beginPath(); c.moveTo(15, 32); c.lineTo(49, 32); c.moveTo(18.5, 22); c.lineTo(45.5, 22); c.moveTo(18.5, 42); c.lineTo(45.5, 42); c.stroke();
-  c.beginPath(); c.ellipse(32, 32, Math.max(2, Math.abs(Math.cos(a)) * 17), 17, 0, 0, 7); c.stroke();
-  c.fillStyle = "#fff"; c.beginPath(); c.arc(47, 17, 4.5, 0, 7); c.fill();
+  c.fillStyle = g; c.fillRect(0, 0, 64, 64);
+  const r = 17.28; c.strokeStyle = "#fff"; c.lineWidth = 2.5; c.lineCap = "round";
+  c.beginPath(); c.arc(32, 32, r, 0, 7); c.stroke();
+  c.beginPath(); c.moveTo(32 - r, 32); c.lineTo(32 + r, 32); c.moveTo(32 - 15, 32 - 8.6); c.lineTo(32 + 15, 32 - 8.6); c.moveTo(32 - 15, 32 + 8.6); c.lineTo(32 + 15, 32 + 8.6); c.stroke();
+  c.beginPath(); c.ellipse(32, 32, Math.max(2, Math.abs(Math.cos(a)) * r), r, 0, 0, 7); c.stroke();
+  c.fillStyle = "#fff"; c.beginPath(); c.arc(32 + 0.78 * r, 32 - 0.78 * r, 3.5, 0, 7); c.fill();
 }
 function startFavAnim() {
   if (favTimer || !CanvasRenderingContext2D.prototype.roundRect || matchMedia("(prefers-reduced-motion:reduce)").matches) return;
@@ -923,7 +1048,7 @@ $("#install").addEventListener("click", async () => {
     window.__bip = null;
     try { d.prompt(); await d.userChoice; } catch (e) {}
   } else if (isIOS || isSafariMac) installHelp();
-  else toast(isStandalone() ? "Déjà installée ✓" : "Installation indisponible ici : ouvre le site en HTTPS dans Chrome ou Edge");
+  else toast(isStandalone() ? "Déjà installée ✓" : "Menu ⋮ de Chrome → « Installer l'application »");
 });
 addEventListener("appinstalled", () => { window.__bip = null; toast("Talco News est installée ✓"); $("#install").classList.add("done"); });
 matchMedia("(display-mode:standalone)").addEventListener?.("change", refreshInstallBtn);
