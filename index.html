@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Talco News</title>
+<meta name="description" content="L'actualité du monde entier, traduite en direct. Plus de 100 sources.">
+<meta name="theme-color" content="#e8590c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" id="fav">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Talco News">
+<style>
+:root{--bg:#f4f5f8;--card:#ffffffcc;--solid:#fff;--text:#12151b;--muted:#667085;--accent:#e8590c;--accent2:#d6285a;--border:#e2e5ec;--shadow:0 8px 30px -12px #1a1f3a30}
+:root[data-theme=dark]{--bg:#0b0e14;--card:#161b24cc;--solid:#161b24;--text:#eef1f6;--muted:#94a0b4;--accent:#ff8a3d;--accent2:#ff4d7d;--border:#252c38;--shadow:0 8px 30px -12px #000a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;overflow-x:hidden}
+.aurora{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.aurora i{position:absolute;width:55vmax;height:55vmax;border-radius:50%;filter:blur(90px);opacity:.28;animation:float 22s ease-in-out infinite alternate}
+.aurora i:nth-child(1){background:var(--accent);top:-20vmax;left:-15vmax}
+.aurora i:nth-child(2){background:var(--accent2);bottom:-25vmax;right:-15vmax;animation-delay:-8s}
+.aurora i:nth-child(3){background:#6a5cff;top:30%;left:45%;width:35vmax;height:35vmax;opacity:.14;animation-delay:-14s}
+@keyframes float{to{transform:translate(8vmax,6vmax) scale(1.15)}}
+header{position:sticky;top:0;z-index:20;backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--border);padding:calc(10px + env(safe-area-inset-top)) 14px 10px}
+.wrap{max-width:1180px;margin:0 auto}
+.top{display:flex;align-items:center;gap:10px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:inherit;flex:none}
+.logo svg{width:34px;height:34px;filter:drop-shadow(0 4px 10px #e8590c55)}
+.logo b{font-size:1.3rem;letter-spacing:-.5px;font-weight:800}
+.logo b span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.spacer{flex:1}
+.ctl{border:1px solid var(--border);background:var(--solid);color:var(--text);border-radius:12px;padding:8px 10px;font-size:14px;cursor:pointer;transition:transform .15s,box-shadow .2s;min-height:38px}
+.ctl:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+.ctl:active{transform:scale(.96)}
+select.ctl{max-width:130px}
+#refresh.spin svg{animation:rot .8s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.row2{display:flex;gap:8px;margin-top:10px}
+#q{flex:1;min-width:0;padding:9px 14px;border-radius:12px;border:1px solid var(--border);background:var(--solid);color:var(--text);font-size:15px;outline:none;transition:box-shadow .2s,border-color .2s}
+#q:focus{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 20%,transparent)}
+nav{display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding-bottom:2px;scrollbar-width:none;scroll-snap-type:x proximity}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:none;scroll-snap-align:start;border:1px solid var(--border);background:var(--solid);color:var(--text);border-radius:999px;padding:6px 15px;font-size:14px;cursor:pointer;transition:all .2s}
+nav button:hover{border-color:var(--accent)}
+nav button.on{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;color:#fff;box-shadow:0 6px 18px -6px var(--accent)}
+.ticker{overflow:hidden;border-bottom:1px solid var(--border);background:color-mix(in srgb,var(--solid) 60%,transparent);white-space:nowrap;font-size:13px;color:var(--muted)}
+.ticker div{display:inline-block;padding:7px 0;animation:tick 70s linear infinite}
+.ticker:hover div{animation-play-state:paused}
+.ticker a{color:inherit;text-decoration:none;margin-right:34px}
+.ticker a::before{content:"●";color:var(--accent);margin-right:8px;font-size:9px;vertical-align:1px}
+.ticker a:hover{color:var(--text)}
+@keyframes tick{to{transform:translateX(-50%)}}
+main{max-width:1180px;margin:0 auto;padding:16px 14px 40px}
+#status{color:var(--muted);font-size:13px;margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#status .bar{height:3px;width:80px;border-radius:3px;background:var(--border);overflow:hidden}
+#status .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+#hero{margin-bottom:16px}
+.card{position:relative;background:var(--card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.card:hover{transform:translateY(-4px) scale(1.01)}
+.card.new{animation:up .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*35ms)}
+@keyframes up{from{opacity:0;transform:translateY(18px) scale(.97)}}
+.card .im{aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,var(--border),transparent)}
+.card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.card:hover img{transform:scale(1.06)}
+.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.meta{font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center}
+.src{color:var(--accent);font-weight:700}
+.tr{font-size:10.5px;border:1px solid var(--border);border-radius:6px;padding:0 5px;color:var(--muted)}
+.card h2{margin:0;font-size:1.02rem;line-height:1.28;font-weight:700}
+.card h2 a{color:inherit;text-decoration:none}
+.card h2 a::after{content:"";position:absolute;inset:0;z-index:1}
+.card p{margin:0;font-size:13.5px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.fav{position:absolute;top:10px;right:10px;z-index:2;width:34px;height:34px;border-radius:50%;border:0;background:#0009;color:#fff;font-size:17px;cursor:pointer;backdrop-filter:blur(6px);transition:transform .2s}
+.fav:hover{transform:scale(1.12)}
+.fav.on{background:linear-gradient(135deg,var(--accent),var(--accent2));animation:pop .35s}
+@keyframes pop{50%{transform:scale(1.35)}}
+.card.hero{flex-direction:row;min-height:300px}
+.card.hero .im{aspect-ratio:auto;flex:1.4}
+.card.hero .body{flex:1;justify-content:center;padding:24px}
+.card.hero h2{font-size:1.65rem;letter-spacing:-.5px}
+.card.hero p{-webkit-line-clamp:5;font-size:15px}
+.card.hero.noimg .body{padding:28px}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.skel{height:300px;border-radius:18px;background:linear-gradient(100deg,var(--card) 30%,var(--border) 50%,var(--card) 70%);background-size:300% 100%;animation:sk 1.3s infinite}
+@keyframes sk{to{background-position:-300% 0}}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 10px}
+#install{display:none}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 16px 30px}
+#toTop{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:44px;height:44px;border-radius:50%;border:0;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));font-size:18px;cursor:pointer;box-shadow:var(--shadow);opacity:0;transform:translateY(20px);pointer-events:none;transition:all .3s;z-index:30}
+#toTop.show{opacity:1;transform:none;pointer-events:auto}
+@media(max-width:720px){
+  .card.hero{flex-direction:column;min-height:0}
+  .card.hero .im{aspect-ratio:16/9;flex:none}
+  .card.hero h2{font-size:1.3rem}
+  .card.hero .body{padding:14px}
+  .logo b{font-size:1.15rem}
+  select.ctl{max-width:104px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="aurora"><i></i><i></i><i></i></div>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <a class="logo" href="./" aria-label="Talco News">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset="1" stop-color="#d6285a"/></linearGradient></defs>
+          <rect width="64" height="64" rx="16" fill="url(#lg)"/>
+          <g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round">
+            <circle cx="32" cy="32" r="17"/>
+            <path d="M15 32h34M18.5 22h27M18.5 42h27"/>
+            <ellipse cx="32" cy="32" rx="8" ry="17"><animate attributeName="rx" values="17;2;17;2;17" keyTimes="0;.25;.5;.75;1" dur="6s" repeatCount="indefinite"/></ellipse>
+          </g>
+          <circle cx="47" cy="17" r="4.5" fill="#fff"><animate attributeName="r" values="4.5;6;4.5" dur="2s" repeatCount="indefinite"/></circle>
+        </svg>
+        <b>Talco<span>News</span></b>
+      </a>
+      <div class="spacer"></div>
+      <select id="lang" class="ctl" title="Traduction" aria-label="Langue de traduction">
+        <option value="off">🌐 Original</option>
+        <option value="fr" selected>🇫🇷 Français</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="it">🇮🇹 Italiano</option>
+        <option value="pt">🇵🇹 Português</option>
+        <option value="ar">🇸🇦 العربية</option>
+      </select>
+      <button id="theme" class="ctl" title="Thème" aria-label="Changer de thème">◐</button>
+      <button id="install" class="ctl" title="Installer l'application">⤓ Installer</button>
+      <button id="refresh" class="ctl" title="Actualiser" aria-label="Actualiser"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg></button>
+    </div>
+    <div class="row2">
+      <input id="q" type="search" placeholder="Rechercher dans les articles…" aria-label="Rechercher">
+      <select id="src" class="ctl" aria-label="Filtrer par source"><option value="">Toutes les sources</option></select>
+    </div>
+    <nav id="tabs" aria-label="Rubriques"></nav>
+  </div>
+</header>
+<div class="ticker" id="tickerWrap" hidden><div id="ticker"></div></div>
+<main>
+  <div id="status"></div>
+  <div id="hero"></div>
+  <div id="grid"></div>
+</main>
+<footer>Talco News · les articles appartiennent à leurs éditeurs · la traduction est automatique</footer>
+<button id="toTop" aria-label="Haut de page">↑</button>
+
+<script>
+/* ============ SOURCES ============ */
+const S = (n,u,l="en") => ({n,u,l});
+const FEEDS = {
+  "À la une": [
+    S("Le Monde","https://www.lemonde.fr/rss/une.xml","fr"),
+    S("Franceinfo","https://www.francetvinfo.fr/titres.rss","fr"),
+    S("Le Figaro","https://www.lefigaro.fr/rss/figaro_actualites.xml","fr"),
+    S("France 24","https://www.france24.com/fr/rss","fr"),
+    S("BBC","https://feeds.bbci.co.uk/news/rss.xml"),
+    S("The Guardian","https://www.theguardian.com/world/rss"),
+    S("NPR","https://feeds.npr.org/1001/rss.xml"),
+    S("Sky News","https://feeds.skynews.com/feeds/rss/home.xml")
+  ],
+  "Monde": [
+    S("Le Monde","https://www.lemonde.fr/international/rss_full.xml","fr"),
+    S("RFI","https://www.rfi.fr/fr/rss","fr"),
+    S("DW","https://rss.dw.com/rdf/rss-fr-all","fr"),
+    S("BBC","https://feeds.bbci.co.uk/news/world/rss.xml"),
+    S("Al Jazeera","https://www.aljazeera.com/xml/rss/all.xml"),
+    S("The Guardian","https://www.theguardian.com/world/rss"),
+    S("NYT","https://rss.nytimes.com/services/xml/rss/nyt/World.xml"),
+    S("CNN","http://rss.cnn.com/rss/edition_world.rss"),
+    S("Sky News","https://feeds.skynews.com/feeds/rss/world.xml")
+  ],
+  "Europe": [
+    S("Le Monde","https://www.lemonde.fr/europe/rss_full.xml","fr"),
+    S("BBC","https://feeds.bbci.co.uk/news/world/europe/rss.xml"),
+    S("DW","https://rss.dw.com/rdf/rss-en-eu","en"),
+    S("The Guardian","https://www.theguardian.com/world/europe-news/rss"),
+    S("Der Spiegel","https://www.spiegel.de/international/index.rss"),
+    S("El País","https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada","es"),
+    S("ANSA","https://www.ansa.it/sito/ansait_rss.xml","it"),
+    S("Politico EU","https://www.politico.eu/feed/")
+  ],
+  "Amériques": [
+    S("BBC US & Canada","https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml"),
+    S("BBC Amérique latine","https://feeds.bbci.co.uk/news/world/latin_america/rss.xml"),
+    S("NYT Americas","https://rss.nytimes.com/services/xml/rss/nyt/Americas.xml"),
+    S("NPR","https://feeds.npr.org/1004/rss.xml"),
+    S("CBC","https://www.cbc.ca/webfeed/rss/rss-world"),
+    S("La Presse","https://www.lapresse.ca/actualites/rss","fr"),
+    S("The Guardian US","https://www.theguardian.com/us-news/rss")
+  ],
+  "Asie": [
+    S("BBC Asie","https://feeds.bbci.co.uk/news/world/asia/rss.xml"),
+    S("Le Monde Asie-Pacifique","https://www.lemonde.fr/asie-pacifique/rss_full.xml","fr"),
+    S("Japan Times","https://www.japantimes.co.jp/feed/"),
+    S("SCMP","https://www.scmp.com/rss/91/feed"),
+    S("CNA","https://www.channelnewsasia.com/rssfeeds/8395986"),
+    S("The Hindu","https://www.thehindu.com/news/international/feeder/default.rss"),
+    S("Times of India","https://timesofindia.indiatimes.com/rssfeeds/296589292.cms"),
+    S("NYT Asia","https://rss.nytimes.com/services/xml/rss/nyt/AsiaPacific.xml")
+  ],
+  "Afrique": [
+    S("Le Monde Afrique","https://www.lemonde.fr/afrique/rss_full.xml","fr"),
+    S("RFI Afrique","https://www.rfi.fr/fr/afrique/rss","fr"),
+    S("Jeune Afrique","https://www.jeuneafrique.com/feed/","fr"),
+    S("BBC Afrique","https://feeds.bbci.co.uk/news/world/africa/rss.xml"),
+    S("Africanews","https://www.africanews.com/feed/rss"),
+    S("allAfrica","https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf"),
+    S("NYT Africa","https://rss.nytimes.com/services/xml/rss/nyt/Africa.xml")
+  ],
+  "Moyen-Orient": [
+    S("Le Monde Proche-Orient","https://www.lemonde.fr/proche-orient/rss_full.xml","fr"),
+    S("France 24","https://www.france24.com/fr/moyen-orient/rss","fr"),
+    S("BBC","https://feeds.bbci.co.uk/news/world/middle_east/rss.xml"),
+    S("Al Jazeera","https://www.aljazeera.com/xml/rss/all.xml"),
+    S("Times of Israel","https://www.timesofisrael.com/feed/"),
+    S("Arab News","https://www.arabnews.com/rss.xml"),
+    S("NYT Mid-East","https://rss.nytimes.com/services/xml/rss/nyt/MiddleEast.xml")
+  ],
+  "Économie": [
+    S("Le Monde","https://www.lemonde.fr/economie/rss_full.xml","fr"),
+    S("BBC","https://feeds.bbci.co.uk/news/business/rss.xml"),
+    S("The Guardian","https://www.theguardian.com/uk/business/rss"),
+    S("CNBC","https://www.cnbc.com/id/100003114/device/rss/rss.html"),
+    S("NYT","https://rss.nytimes.com/services/xml/rss/nyt/Business.xml"),
+    S("MarketWatch","https://feeds.content.dowjones.io/public/rss/mw_topstories"),
+    S("Franceinfo Éco","https://www.francetvinfo.fr/economie.rss","fr")
+  ],
+  "Tech": [
+    S("Le Monde Pixels","https://www.lemonde.fr/pixels/rss_full.xml","fr"),
+    S("Numerama","https://www.numerama.com/feed/","fr"),
+    S("Korben","https://korben.info/feed","fr"),
+    S("BBC","https://feeds.bbci.co.uk/news/technology/rss.xml"),
+    S("The Verge","https://www.theverge.com/rss/index.xml"),
+    S("Ars Technica","https://feeds.arstechnica.com/arstechnica/index"),
+    S("TechCrunch","https://techcrunch.com/feed/"),
+    S("Wired","https://www.wired.com/feed/rss"),
+    S("Hacker News","https://hnrss.org/frontpage")
+  ],
+  "Sport": [
+    S("L'Équipe","https://www.lequipe.fr/rss/actu_rss.xml","fr"),
+    S("Le Monde Sport","https://www.lemonde.fr/sport/rss_full.xml","fr"),
+    S("France 24 Sport","https://www.france24.com/fr/sports/rss","fr"),
+    S("BBC Sport","https://feeds.bbci.co.uk/sport/rss.xml"),
+    S("ESPN","https://www.espn.com/espn/rss/news"),
+    S("The Guardian Sport","https://www.theguardian.com/sport/rss"),
+    S("Sky Sports","https://www.skysports.com/rss/12040")
+  ],
+  "Science": [
+    S("Le Monde Sciences","https://www.lemonde.fr/sciences/rss_full.xml","fr"),
+    S("Sciences et Avenir","https://www.sciencesetavenir.fr/rss.xml","fr"),
+    S("BBC","https://feeds.bbci.co.uk/news/science_and_environment/rss.xml"),
+    S("NASA","https://www.nasa.gov/news-release/feed/"),
+    S("ScienceDaily","https://www.sciencedaily.com/rss/all.xml"),
+    S("Nature","https://www.nature.com/nature.rss"),
+    S("New Scientist","https://www.newscientist.com/feed/home/"),
+    S("Phys.org","https://phys.org/rss-feed/")
+  ],
+  "Santé & Planète": [
+    S("Le Monde Planète","https://www.lemonde.fr/planete/rss_full.xml","fr"),
+    S("Le Monde Santé","https://www.lemonde.fr/sante/rss_full.xml","fr"),
+    S("BBC Santé","https://feeds.bbci.co.uk/news/health/rss.xml"),
+    S("Guardian Environment","https://www.theguardian.com/environment/rss"),
+    S("OMS","https://www.who.int/rss-feeds/news-english.xml"),
+    S("NYT Climate","https://rss.nytimes.com/services/xml/rss/nyt/Climate.xml")
+  ],
+  "Culture": [
+    S("Le Monde Culture","https://www.lemonde.fr/culture/rss_full.xml","fr"),
+    S("BBC","https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"),
+    S("The Guardian","https://www.theguardian.com/culture/rss"),
+    S("Variety","https://variety.com/feed/"),
+    S("NYT Arts","https://rss.nytimes.com/services/xml/rss/nyt/Arts.xml")
+  ]
+};
+const FAV = "★ Favoris";
+
+/* ============ CONFIG ============ */
+const RSS2JSON = "https://api.rss2json.com/v1/api.json?rss_url=";
+const RSS2JSON_KEY = "";          // optionnel : clé gratuite rss2json.com pour lever les limites
+const PROXY = "https://api.allorigins.win/raw?url=";
+const TTL = 10 * 60 * 1000;
+const MAX_PER_FEED = 12;
+
+/* ============ HELPERS ============ */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const strip = h => { const d = document.createElement("div"); d.innerHTML = h || ""; return (d.textContent || "").replace(/\s+/g, " ").trim(); };
+const safeUrl = u => /^https?:\/\//i.test(u || "") ? u : "#";
+const lsGet = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+const ssGet = k => { try { const v = JSON.parse(sessionStorage.getItem(k)); if (v && Date.now() - v.t < TTL) return v.d; } catch (e) {} return null; };
+const ssSet = (k, d) => { try { sessionStorage.setItem(k, JSON.stringify({ t: Date.now(), d })); } catch (e) {} };
+const parseDate = s => {
+  if (!s) return 0;
+  if (/^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d$/.test(s)) return Date.parse(s.replace(" ", "T") + "Z") || 0;
+  return Date.parse(s) || 0;
+};
+const firstImg = h => { const m = /<img[^>]+src=["']([^"']+)["']/i.exec(h || ""); return m ? m[1] : ""; };
+function ago(t) {
+  if (!t) return "";
+  const m = Math.round((Date.now() - t) / 60000);
+  if (m < 1) return "à l'instant";
+  if (m < 60) return `il y a ${Math.max(m, 1)} min`;
+  const h = Math.round(m / 60);
+  if (h < 24) return `il y a ${h} h`;
+  return `il y a ${Math.round(h / 24)} j`;
+}
+
+/* ============ STATE ============ */
+let current = lsGet("tn:tab", "À la une");
+if (current !== FAV && !FEEDS[current]) current = "À la une";
+let articles = [], lang = lsGet("tn:lang", "fr"), srcFilter = "", loadId = 0, favs = lsGet("tn:fav", []);
+const rendered = new Set();
+
+/* ============ FETCH ============ */
+async function viaRss2json(f) {
+  const r = await fetch(RSS2JSON + encodeURIComponent(f.u) + (RSS2JSON_KEY ? "&api_key=" + RSS2JSON_KEY : ""));
+  const j = await r.json();
+  if (j.status !== "ok" || !Array.isArray(j.items)) throw new Error("rss2json");
+  return j.items.slice(0, MAX_PER_FEED).map(i => ({
+    title: strip(i.title), link: i.link, date: parseDate(i.pubDate),
+    img: i.thumbnail || (i.enclosure && i.enclosure.link && /image|jpe?g|png|webp/i.test((i.enclosure.type || "") + i.enclosure.link) ? i.enclosure.link : "") || firstImg(i.content || i.description),
+    desc: strip(i.description).slice(0, 240)
+  }));
+}
+async function viaProxy(f) {
+  const r = await fetch(PROXY + encodeURIComponent(f.u));
+  const txt = await r.text();
+  const doc = new DOMParser().parseFromString(txt, "text/xml");
+  const items = [...doc.querySelectorAll("item, entry")].slice(0, MAX_PER_FEED);
+  if (!items.length) throw new Error("proxy");
+  return items.map(it => {
+    const g = t => { const e = it.getElementsByTagName(t)[0]; return e ? e.textContent : ""; };
+    const l = it.getElementsByTagName("link")[0];
+    const desc = g("description") || g("summary") || g("content:encoded") || g("content");
+    const mt = it.getElementsByTagName("media:thumbnail")[0] || it.getElementsByTagName("media:content")[0] || it.getElementsByTagName("enclosure")[0];
+    return {
+      title: strip(g("title")), link: l ? (l.getAttribute("href") || l.textContent.trim()) : "",
+      date: parseDate(g("pubDate") || g("published") || g("updated") || g("dc:date")),
+      img: (mt && mt.getAttribute("url")) || firstImg(desc), desc: strip(desc).slice(0, 240)
+    };
+  });
+}
+async function fetchFeed(f) {
+  const key = "tn:f:" + f.u, hit = ssGet(key);
+  if (hit) return hit;
+  let items = [];
+  try { items = await viaRss2json(f); } catch (e) { try { items = await viaProxy(f); } catch (e2) { items = []; } }
+  items = items.filter(a => a.title && a.link).map(a => ({ ...a, source: f.n, lang: f.l }));
+  if (items.length) ssSet(key, items);
+  return items;
+}
+
+/* ============ TRADUCTION ============ */
+const trCache = {};
+function trLoad(l) { return trCache[l] || (trCache[l] = lsGet("tn:tr:" + l, {})); }
+function trSave(l) {
+  const c = trCache[l], k = Object.keys(c);
+  if (k.length > 900) k.slice(0, k.length - 700).forEach(x => delete c[x]);
+  lsSet("tn:tr:" + l, c);
+}
+async function gtx(text, tl) {
+  const r = await fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=" + tl + "&dt=t&q=" + encodeURIComponent(text));
+  const j = await r.json();
+  return j[0].map(x => x[0]).join("");
+}
+async function translatePending(myId) {
+  if (lang === "off") return;
+  const cache = trLoad(lang);
+  const lines = [];
+  for (const a of articles) {
+    if (a.lang === lang) continue;
+    for (const t of [a.title, a.desc]) if (t && !(t in cache) && !lines.includes(t)) lines.push(t);
+  }
+  const chunks = []; let cur = [], len = 0;
+  for (const t of lines) {
+    const l = encodeURIComponent(t).length + 3;
+    if (cur.length && (len + l > 1700 || cur.length >= 14)) { chunks.push(cur); cur = []; len = 0; }
+    cur.push(t); len += l;
+  }
+  if (cur.length) chunks.push(cur);
+  let i = 0;
+  async function worker() {
+    while (i < chunks.length) {
+      const ch = chunks[i++];
+      if (myId !== loadId) return;
+      try {
+        const out = (await gtx(ch.join("\n"), lang)).split("\n");
+        if (out.length === ch.length) ch.forEach((t, k) => cache[t] = out[k].trim());
+        else for (const t of ch) { try { cache[t] = (await gtx(t, lang)).trim(); } catch (e) {} }
+      } catch (e) {}
+      if (myId === loadId) scheduleRender();
+    }
+  }
+  await Promise.all([worker(), worker(), worker()]);
+  trSave(lang);
+}
+const view = a => {
+  if (lang === "off" || a.lang === lang) return { title: a.title, desc: a.desc, tr: false };
+  const c = trLoad(lang);
+  return { title: c[a.title] || a.title, desc: a.desc ? (c[a.desc] || a.desc) : "", tr: !!c[a.title] };
+};
+
+/* ============ RENDER ============ */
+let rq = 0;
+function scheduleRender() { cancelAnimationFrame(rq); rq = requestAnimationFrame(render); }
+function cardHTML(a, i, hero) {
+  const v = view(a), fav = favs.some(f => f.link === a.link), isNew = !rendered.has(a.link);
+  const img = a.img ? `<div class="im"><img src="${esc(safeUrl(a.img))}" alt="" loading="${hero ? "eager" : "lazy"}" referrerpolicy="no-referrer" onerror="this.closest('.im').remove()"></div>` : "";
+  return `<article class="card${hero ? " hero" : ""}${hero && !a.img ? " noimg" : ""}${isNew ? " new" : ""}" style="--i:${Math.min(i, 14)}">
+    ${img}
+    <button class="fav${fav ? " on" : ""}" data-l="${esc(a.link)}" aria-label="Favori" title="Favori">${fav ? "★" : "☆"}</button>
+    <div class="body">
+      <div class="meta"><span class="src">${esc(a.source)}</span><span>${ago(a.date)}</span>${v.tr ? `<span class="tr" title="Traduit depuis ${esc((a.lang || "").toUpperCase())}">🌐 ${esc((a.lang || "").toUpperCase())}→${esc(lang.toUpperCase())}</span>` : ""}</div>
+      <h2><a href="${esc(safeUrl(a.link))}" target="_blank" rel="noopener noreferrer">${esc(v.title)}</a></h2>
+      ${v.desc ? `<p>${esc(v.desc)}</p>` : ""}
+    </div></article>`;
+}
+function render() {
+  const q = $("#q").value.trim().toLowerCase();
+  let list = current === FAV ? favs.slice() : articles.slice();
+  if (srcFilter) list = list.filter(a => a.source === srcFilter);
+  if (q) list = list.filter(a => { const v = view(a); return (a.title + " " + v.title + " " + a.desc + " " + v.desc).toLowerCase().includes(q); });
+  const heroIdx = list.findIndex(a => a.img);
+  let hero = "", rest = list;
+  if (heroIdx > -1 && heroIdx < 6 && !q) { hero = cardHTML(list[heroIdx], 0, true); rest = list.filter((_, i) => i !== heroIdx); }
+  $("#hero").innerHTML = hero;
+  $("#grid").innerHTML = rest.length || hero ? rest.map((a, i) => cardHTML(a, i + 1, false)).join("") : `<div class="empty">${current === FAV ? "Aucun favori pour l'instant. Appuie sur ☆ sur un article." : "Aucun article trouvé."}</div>`;
+  list.forEach(a => rendered.add(a.link));
+  updateTicker();
+}
+function updateTicker() {
+  const w = $("#tickerWrap");
+  const top = articles.slice(0, 12);
+  if (current === FAV || !top.length) { w.hidden = true; return; }
+  const html = top.map(a => `<a href="${esc(safeUrl(a.link))}" target="_blank" rel="noopener noreferrer">${esc(view(a).title)}</a>`).join("");
+  $("#ticker").innerHTML = html + html;
+  w.hidden = false;
+}
+function setStatus(done, total) {
+  const n = current === FAV ? favs.length : articles.length;
+  const srcs = new Set((current === FAV ? favs : articles).map(a => a.source)).size;
+  let h = `<span>${n} article${n > 1 ? "s" : ""} · ${srcs} source${srcs > 1 ? "s" : ""}</span>`;
+  if (total && done < total) h += `<span class="bar"><i style="width:${Math.round(done / total * 100)}%"></i></span><span>chargement ${done}/${total}</span>`;
+  else if (current !== FAV && n) h += `<span>· maj ${new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}</span>`;
+  if (!navigator.onLine) h += `<span>· hors ligne</span>`;
+  $("#status").innerHTML = h;
+}
+function fillSources() {
+  const sel = $("#src"), names = [...new Set((current === FAV ? favs : articles).map(a => a.source))].sort();
+  if (srcFilter && !names.includes(srcFilter)) srcFilter = "";
+  sel.innerHTML = `<option value="">Toutes les sources</option>` + names.map(n => `<option${n === srcFilter ? " selected" : ""}>${esc(n)}</option>`).join("");
+}
+
+/* ============ LOAD ============ */
+async function load(force) {
+  const myId = ++loadId;
+  articles = []; srcFilter = ""; fillSources();
+  $("#refresh").classList.add("spin");
+  startFavAnim();
+  if (current === FAV) {
+    $("#hero").innerHTML = ""; render(); fillSources(); setStatus(0, 0);
+    $("#refresh").classList.remove("spin"); stopFavAnim(); translatePending(myId).then(scheduleRender);
+    return;
+  }
+  const feeds = FEEDS[current];
+  if (force) feeds.forEach(f => { try { sessionStorage.removeItem("tn:f:" + f.u); } catch (e) {} });
+  $("#hero").innerHTML = ""; $("#grid").innerHTML = '<div class="skel"></div>'.repeat(6);
+  let done = 0, idx = 0; const seen = new Set();
+  setStatus(0, feeds.length);
+  async function worker() {
+    while (idx < feeds.length) {
+      const f = feeds[idx++];
+      const items = await fetchFeed(f);
+      if (myId !== loadId) return;
+      for (const a of items) if (!seen.has(a.link)) { seen.add(a.link); articles.push(a); }
+      articles.sort((x, y) => y.date - x.date);
+      done++; fillSources(); render(); setStatus(done, feeds.length);
+    }
+  }
+  await Promise.all([worker(), worker(), worker(), worker(), worker()]);
+  if (myId !== loadId) return;
+  $("#refresh").classList.remove("spin"); stopFavAnim();
+  if (!articles.length) $("#grid").innerHTML = `<div class="empty">Impossible de charger les flux. Vérifie ta connexion puis actualise.</div>`;
+  setStatus(done, feeds.length);
+  translatePending(myId).then(() => { if (myId === loadId) scheduleRender(); });
+}
+
+/* ============ UI ============ */
+function tabs() {
+  const names = [...Object.keys(FEEDS), FAV];
+  $("#tabs").innerHTML = names.map(k => `<button class="${k === current ? "on" : ""}" data-k="${esc(k)}">${esc(k)}${k === FAV && favs.length ? " " + favs.length : ""}</button>`).join("");
+  const on = $("#tabs .on"); if (on) on.scrollIntoView({ inline: "center", block: "nearest" });
+}
+$("#tabs").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  current = b.dataset.k; lsSet("tn:tab", current); tabs(); rendered.clear(); window.scrollTo({ top: 0, behavior: "smooth" }); load(false);
+});
+document.addEventListener("click", e => {
+  const b = e.target.closest(".fav"); if (!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const link = b.dataset.l, i = favs.findIndex(f => f.link === link);
+  if (i > -1) favs.splice(i, 1);
+  else { const a = (articles.find(x => x.link === link) || favs.find(x => x.link === link)); if (a) favs.unshift({ ...a }); }
+  favs = favs.slice(0, 200); lsSet("tn:fav", favs); tabs();
+  if (current === FAV) { fillSources(); render(); setStatus(0, 0); } else { b.classList.toggle("on", i === -1); b.textContent = i === -1 ? "★" : "☆"; }
+});
+$("#q").addEventListener("input", () => { rendered.clear(); scheduleRender(); });
+$("#src").addEventListener("change", e => { srcFilter = e.target.value; scheduleRender(); });
+$("#refresh").addEventListener("click", () => { rendered.clear(); load(true); });
+$("#lang").value = lang;
+$("#lang").addEventListener("change", e => {
+  lang = e.target.value; lsSet("tn:lang", lang);
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  loadId++; const id = loadId;
+  scheduleRender(); translatePending(id);
+});
+document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+function applyTheme(t) {
+  if (t) document.documentElement.dataset.theme = t;
+  else document.documentElement.dataset.theme = matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light";
+  const m = document.querySelector('meta[name=theme-color]'); if (m) m.content = document.documentElement.dataset.theme === "dark" ? "#0b0e14" : "#e8590c";
+}
+applyTheme(lsGet("tn:theme", null));
+$("#theme").addEventListener("click", () => {
+  const t = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  lsSet("tn:theme", t); applyTheme(t);
+});
+const toTop = $("#toTop");
+addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 600), { passive: true });
+toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+addEventListener("online", () => { setStatus(0, 0); load(true); });
+addEventListener("offline", () => setStatus(0, 0));
+setInterval(() => { if (document.visibilityState === "visible" && current !== FAV) load(true); }, 15 * 60 * 1000);
+
+/* ============ FAVICON ANIMÉE ============ */
+const favLink = $("#fav"), cv = document.createElement("canvas"); cv.width = cv.height = 64;
+let favTimer = null, ang = 0;
+function drawFav(a) {
+  const c = cv.getContext("2d"); c.clearRect(0, 0, 64, 64);
+  const g = c.createLinearGradient(0, 0, 64, 64); g.addColorStop(0, "#ff8a3d"); g.addColorStop(1, "#d6285a");
+  c.fillStyle = g; c.beginPath(); c.roundRect(0, 0, 64, 64, 16); c.fill();
+  c.strokeStyle = "#fff"; c.lineWidth = 3; c.lineCap = "round";
+  c.beginPath(); c.arc(32, 32, 17, 0, 7); c.stroke();
+  c.beginPath(); c.moveTo(15, 32); c.lineTo(49, 32); c.moveTo(18.5, 22); c.lineTo(45.5, 22); c.moveTo(18.5, 42); c.lineTo(45.5, 42); c.stroke();
+  c.beginPath(); c.ellipse(32, 32, Math.max(2, Math.abs(Math.cos(a)) * 17), 17, 0, 0, 7); c.stroke();
+  c.fillStyle = "#fff"; c.beginPath(); c.arc(47, 17, 4.5, 0, 7); c.fill();
+}
+function startFavAnim() {
+  if (favTimer || !CanvasRenderingContext2D.prototype.roundRect || matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  favTimer = setInterval(() => { ang += 0.22; drawFav(ang); favLink.href = cv.toDataURL("image/png"); }, 110);
+}
+function stopFavAnim() {
+  if (!favTimer) return;
+  clearInterval(favTimer); favTimer = null; favLink.href = "icons/favicon-32.png";
+}
+
+/* ============ PWA ============ */
+let deferred;
+addEventListener("beforeinstallprompt", e => { e.preventDefault(); deferred = e; $("#install").style.display = "inline-block"; });
+$("#install").addEventListener("click", async () => {
+  if (!deferred) return; deferred.prompt(); await deferred.userChoice; deferred = null; $("#install").style.display = "none";
+});
+addEventListener("appinstalled", () => { $("#install").style.display = "none"; });
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+}
+
+tabs(); load(false);
+</script>
+</body>
+</html>
