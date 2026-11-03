@@ -1,8 +1,9 @@
-const VERSION = "talco-news-v4";
+const VERSION = "talco-news-v7";
 const SHELL = [
   "./",
   "index.html",
-  "manifest.webmanifest",
+  "readability.js",
+  "manifest.json",
   "favicon.svg",
   "favicon-32.png",
   "icon-192.png",
