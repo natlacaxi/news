@@ -1,4 +1,4 @@
-const VERSION = "talco-news-v1";
+const VERSION = "talco-news-v3";
 const SHELL = [
   "./",
   "index.html",
@@ -10,7 +10,12 @@ const SHELL = [
   "icons/maskable-512.png",
   "icons/apple-touch-icon.png"
 ];
-const NETWORK_FIRST_HOSTS = ["api.rss2json.com", "api.allorigins.win"];
+// Données externes : réseau d'abord, cache en secours (lecture hors ligne)
+const NETWORK_FIRST_HOSTS = [
+  "api.rss2json.com", "api.allorigins.win", "corsproxy.io",
+  "api.coingecko.com", "api.frankfurter.dev", "api.frankfurter.app",
+  "api.open-meteo.com", "earthquake.usgs.gov", "api.wikimedia.org"
+];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -29,7 +34,6 @@ self.addEventListener("fetch", e => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
 
-  // Flux d'actualités : réseau d'abord, cache en secours (lecture hors ligne)
   if (NETWORK_FIRST_HOSTS.includes(url.hostname)) {
     e.respondWith(
       fetch(req)
@@ -37,12 +41,11 @@ self.addEventListener("fetch", e => {
           if (res.ok) { const copy = res.clone(); caches.open(VERSION).then(c => c.put(req, copy)); }
           return res;
         })
-        .catch(() => caches.match(req))
+        .catch(() => caches.match(req).then(hit => hit || Response.error()))
     );
     return;
   }
 
-  // Fichiers de l'application : réseau d'abord pour la page, cache d'abord pour le reste
   if (url.origin === location.origin) {
     if (req.mode === "navigate") {
       e.respondWith(
