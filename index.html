@@ -7,9 +7,9 @@
 <meta name="description" content="Plus de 200 sources, traduction instantanée, marchés, météo, séismes et tendances : l'actualité mondiale en direct.">
 <meta name="theme-color" content="#0b0e14">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" id="fav">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmY4YTNkIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Q2Mjg1YSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9InVybCgjZykiLz4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4KICAgIDxjaXJjbGUgY3g9IjMyIiBjeT0iMzIiIHI9IjE3Ii8+CiAgICA8cGF0aCBkPSJNMTUgMzJoMzRNMTguNSAyMmgyN00xOC41IDQyaDI3Ii8+CiAgICA8ZWxsaXBzZSBjeD0iMzIiIGN5PSIzMiIgcng9IjgiIHJ5PSIxNyI+CiAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InJ4IiB2YWx1ZXM9IjE3OzI7MTc7MjsxNyIga2V5VGltZXM9IjA7LjI1Oy41Oy43NTsxIiBkdXI9IjZzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgPC9lbGxpcHNlPgogIDwvZz4KICA8Y2lyY2xlIGN4PSI0NyIgY3k9IjE3IiByPSI0LjUiIGZpbGw9IiNmZmYiPgogICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgdmFsdWVzPSI0LjU7Njs0LjUiIGR1cj0iMnMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+CiAgPC9jaXJjbGU+Cjwvc3ZnPgo=">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" id="fav">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Talco News">
@@ -178,18 +178,52 @@ body[data-tab=info] #feed{display:none}
 .ticker a::before{content:"●";color:var(--a1);margin-right:8px;font-size:9px;vertical-align:1px}
 .ticker a:hover{color:var(--text)}
 @keyframes tick{to{transform:translateX(-50%)}}
-@media(max-width:900px){.hide-s{display:none}.search{order:5;flex-basis:100%;max-width:none}.top{flex-wrap:wrap}.kbd{display:none}}
-@media(max-width:720px){
-  .card.hero{flex-direction:column;min-height:0}
-  .card.hero .im{aspect-ratio:16/10;flex:none}
-  .card.hero h2{font-size:1.3rem}
-  .card.hero .body{padding:14px}
-  #grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
-  body[data-view=mag] #grid{grid-template-columns:1fr}
-  body[data-view=list] .card .im{width:104px}
-  .logo b{font-size:1.12rem}
-  select.ctl{max-width:100px}
+#lang{margin-left:auto}
+header{transition:transform .3s cubic-bezier(.2,.8,.2,1);padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+.strip,.layout{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+.card.noim .meta{padding-right:86px;min-height:34px}
+.card.noim .body{padding-top:14px}
+.card.noim h2{font-size:1.08rem}
+.card.noim p{-webkit-line-clamp:7}
+body[data-view=list] .card.noim .meta{padding-right:40px}
+@media(pointer:coarse){
+  .ctl{height:42px;min-width:42px}
+  nav button{padding:9px 16px}
+  .ab{width:40px;height:40px;font-size:18px}.ext{right:55px}
+  .chip{padding:7px 13px 7px 10px}
+  .tag{padding:6px 12px}
 }
+@media(max-width:1099px){.strip{padding-top:8px}}
+@media(max-width:900px){
+  .search{order:5;flex-basis:100%;max-width:none;margin:2px 0 0}.top{flex-wrap:wrap}.kbd{display:none}
+  header.hid{transform:translateY(-100%)}
+  #grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+  .card.hero{min-height:300px}.card.hero h2{font-size:1.45rem}
+}
+@media(max-width:640px){
+  .hide-s{display:none}
+  .ticker{display:none}
+  .logo svg{width:32px;height:32px}.logo b{font-size:1.1rem}
+  select.ctl{max-width:60px;padding:0 4px}
+  .top{gap:6px}.ctl{padding:0 8px;min-width:40px}
+  .logo{gap:7px}.logo b{font-size:1rem;letter-spacing:-.4px}
+  header{padding-top:calc(8px + env(safe-area-inset-top))}
+  nav{padding:8px 0}
+  .card.hero{flex-direction:column;min-height:0}
+  .card.hero .im{aspect-ratio:16/9;flex:none}
+  .card.hero h2{font-size:1.3rem}.card.hero .body{padding:14px}
+  #grid{grid-template-columns:1fr;gap:12px}
+  body[data-view=mag] #grid{grid-template-columns:1fr}
+  body[data-view=list] .card .im{width:112px}
+  body[data-view=list] .card h2{font-size:.95rem}
+  .st{font-size:12.5px;padding:5px 9px}
+  .layout{padding-top:8px}
+  #drawer .sh .ct{padding:16px 16px 28px}.sh h2{font-size:1.3rem}
+  .btn{flex:1;justify-content:center}
+}
+@media(min-width:1100px) and (max-width:1399px){aside{display:flex}.layout{grid-template-columns:minmax(0,1fr) 300px}}
+@media(min-width:1800px){.wrap,.layout,.strip{max-width:1760px}#grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}.layout{grid-template-columns:minmax(0,1fr) 380px}}
+@media(max-height:480px) and (orientation:landscape){.ticker{display:none}header{position:relative}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -228,7 +262,7 @@ body[data-tab=info] #feed{display:none}
       </select>
       <button id="view" class="ctl hide-s" title="Affichage (v)" aria-label="Changer l'affichage">▦</button>
       <button id="accent" class="ctl hide-s" title="Couleur" aria-label="Changer la couleur">🎨</button>
-      <button id="theme" class="ctl" title="Thème (t)" aria-label="Changer de thème">◐</button>
+      <button id="theme" class="ctl" title="Thème (t)" aria-label="Changer de thème">🌓</button>
       <button id="install" class="ctl" title="Installer l'application" aria-label="Installer l'application">⤓ <span class="hide-s">Installer</span></button>
       <button id="refresh" class="ctl" title="Actualiser (r)" aria-label="Actualiser"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg></button>
     </div>
@@ -453,7 +487,7 @@ let current = lsGet("tn:tab", "À la une");
 if (current !== FAV && current !== INFO && !FEEDS[current]) current = "À la une";
 if (current === INFO && matchMedia("(min-width:1100px)").matches) current = "À la une";
 let articles = [], lang = lsGet("tn:lang", "fr"), srcFilter = "", loadId = 0, favs = lsGet("tn:fav", []), shown = PAGE, failed = [], visible = [];
-let viewMode = lsGet("tn:view", "grid"), accentIdx = lsGet("tn:accent", 0);
+let viewMode = lsGet("tn:view", matchMedia("(max-width:640px)").matches ? "list" : "grid"), accentIdx = lsGet("tn:accent", 0);
 const rendered = new Set();
 const W = { crypto: null, fx: null, wx: null, quakes: null, wiki: null };
 
@@ -576,7 +610,7 @@ function cardHTML(a, i, hero) {
   const v = view(a), fav = favs.some(f => f.link === a.link), isNew = !rendered.has(a.link);
   const live = a.date && Date.now() - a.date < 45 * 6e4;
   const fi = fav16(a.host);
-  return `<article class="card${hero ? " hero" : ""}${hero && !a.img ? " noimg" : ""}${isNew ? " new" : ""}" style="--i:${Math.min(i, 16)}" data-l="${esc(a.link)}" tabindex="0" role="button">
+  return `<article class="card${hero ? " hero" : ""}${hero && !a.img ? " noimg" : ""}${a.img ? "" : " noim"}${isNew ? " new" : ""}" style="--i:${Math.min(i, 16)}" data-l="${esc(a.link)}" tabindex="0" role="button">
     ${a.img ? `<div class="im"><img class="ph" src="${esc(safeUrl(a.img))}" alt="" loading="${hero ? "eager" : "lazy"}" referrerpolicy="no-referrer" onerror="this.closest('.im').remove()"></div>` : ""}
     <button class="ab fav${fav ? " on" : ""}" data-l="${esc(a.link)}" aria-label="Favori">${fav ? "★" : "☆"}</button>
     <a class="ab ext" href="${esc(safeUrl(a.link))}" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir l'article" title="Ouvrir l'article">↗</a>
@@ -834,7 +868,15 @@ function applyTheme(t) {
 applyTheme(lsGet("tn:theme", null)); applyView(); applyAccent();
 $("#theme").addEventListener("click", () => { const t = document.documentElement.dataset.theme === "dark" ? "light" : "dark"; lsSet("tn:theme", t); applyTheme(t); });
 const toTop = $("#toTop");
-addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 700), { passive: true });
+let lastY = 0;
+addEventListener("scroll", () => {
+  const y = scrollY; toTop.classList.toggle("show", y > 700);
+  const hd = document.querySelector("header");
+  if (matchMedia("(max-width:900px)").matches && document.activeElement.id !== "q") {
+    if (y > lastY + 8 && y > 140) hd.classList.add("hid"); else if (y < lastY - 8 || y < 80) hd.classList.remove("hid");
+  } else hd.classList.remove("hid");
+  lastY = y;
+}, { passive: true });
 toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
 addEventListener("online", () => { toast("De retour en ligne"); load(true); loadWidgets(); });
 addEventListener("offline", () => { toast("Hors ligne : articles en cache"); setStatus(); });
@@ -857,7 +899,7 @@ function startFavAnim() {
   if (favTimer || !CanvasRenderingContext2D.prototype.roundRect || matchMedia("(prefers-reduced-motion:reduce)").matches) return;
   favTimer = setInterval(() => { ang += 0.22; drawFav(ang); favLink.href = cv.toDataURL("image/png"); }, 120);
 }
-function stopFavAnim() { if (!favTimer) return; clearInterval(favTimer); favTimer = null; favLink.href = "icons/favicon-32.png"; }
+function stopFavAnim() { if (!favTimer) return; clearInterval(favTimer); favTimer = null; favLink.href = "favicon-32.png"; }
 
 /* ============ PWA ============ */
 const isStandalone = () => matchMedia("(display-mode:standalone)").matches || navigator.standalone === true;
@@ -878,9 +920,10 @@ function refreshInstallBtn() { $("#install").classList.toggle("done", isStandalo
 $("#install").addEventListener("click", async () => {
   const d = window.__bip;
   if (d) {
-    try { d.prompt(); const r = await d.userChoice; if (r.outcome === "accepted") toast("Installation en cours…"); } catch (e) { installHelp(); }
     window.__bip = null;
-  } else installHelp();
+    try { d.prompt(); await d.userChoice; } catch (e) {}
+  } else if (isIOS || isSafariMac) installHelp();
+  else toast(isStandalone() ? "Déjà installée ✓" : "Installation indisponible ici : ouvre le site en HTTPS dans Chrome ou Edge");
 });
 addEventListener("appinstalled", () => { window.__bip = null; toast("Talco News est installée ✓"); $("#install").classList.add("done"); });
 matchMedia("(display-mode:standalone)").addEventListener?.("change", refreshInstallBtn);
